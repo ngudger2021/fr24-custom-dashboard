@@ -3,76 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FR24 Custom Dashboard</title>
+    <title>My Tampermonkey Scripts</title>
     <style>
+        :root {
+            --bg: #f4f7f6;
+            --text-main: #2c3e50;
+            --text-muted: #7f8c8d;
+            --primary: #3498db;
+            --success: #2ecc71;
+            --card-bg: #ffffff;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            background-color: var(--bg);
+            color: var(--text-main);
             margin: 0;
+            padding: 0;
         }
-        .container {
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            max-width: 500px;
+
+        header {
+            background-color: var(--text-main);
+            color: white;
+            padding: 40px 20px;
             text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        h1 {
-            color: #2c3e50;
-            margin-top: 0;
+
+        header h1 { margin: 0; font-size: 2.5em; }
+        header p { color: #bdc3c7; margin-top: 10px; font-size: 1.1em; }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
-        p {
-            color: #7f8c8d;
-            line-height: 1.6;
+
+        /* The Grid System for multiple scripts */
+        .script-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
         }
+
+        /* Individual Script Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-top: 4px solid var(--primary);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            margin: 0;
+            font-size: 1.4em;
+            color: var(--text-main);
+        }
+
+        .version-badge {
+            background: #e8f4fd;
+            color: var(--primary);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .card-description {
+            color: var(--text-muted);
+            font-size: 0.95em;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            flex-grow: 1; /* Pushes the button to the bottom */
+        }
+
+        .feature-list {
+            padding-left: 20px;
+            margin-bottom: 25px;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .feature-list li { margin-bottom: 6px; }
+
         .install-btn {
-            display: inline-block;
-            background-color: #2ecc71;
+            display: block;
+            text-align: center;
+            background-color: var(--success);
             color: white;
             text-decoration: none;
-            padding: 15px 30px;
-            font-size: 18px;
+            padding: 12px 20px;
+            font-size: 16px;
             font-weight: bold;
-            border-radius: 8px;
-            margin-top: 20px;
-            transition: background 0.3s, transform 0.2s;
-        }
-        .install-btn:hover {
-            background-color: #27ae60;
-            transform: translateY(-2px);
-        }
-        .requirements {
-            margin-top: 30px;
-            font-size: 14px;
-            text-align: left;
-            background: #f8f9fa;
-            padding: 15px;
             border-radius: 6px;
-            border-left: 4px solid #3498db;
+            transition: background 0.2s;
+        }
+
+        .install-btn:hover { background-color: #27ae60; }
+
+        /* Style for future/empty cards */
+        .card.coming-soon {
+            border-top: 4px solid #bdc3c7;
+            background: #fdfdfd;
+            opacity: 0.7;
+        }
+        .card.coming-soon .install-btn {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        .setup-guide {
+            margin-top: 50px;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 5px solid #f1c40f;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>FR24 Feeder Dashboard</h1>
-        <p>A supercharged, standalone UI for your local Flightradar24 Raspberry Pi feeder. Features include live Planespotters.net image integration, distance sorting, and dynamic telemetry.</p>
-        
-        <a href="fr24-dashboard.user.js" class="install-btn">⬇️ Install Script</a>
+    <header>
+        <h1>My Userscript Hub</h1>
+        <p>Custom tools and UI enhancements to make local interfaces better.</p>
+    </header>
 
-        <div class="requirements">
-            <strong>Requirements:</strong>
-            <ul style="margin-bottom:0; padding-left: 20px;">
-                <li>Browser extension like <b>Tampermonkey</b> installed.</li>
-                <li>Your feeder must be located at <code>192.168.50.252:8754</code> (Edit the script if your IP changes).</li>
-            </ul>
+    <div class="container">
+        
+        <div class="script-grid">
+            
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">FR24 Ultimate Dashboard</h2>
+                    <span class="version-badge">v5.2</span>
+                </div>
+                <div class="card-description">
+                    Transforms the stock Flightradar24 local feeder page into a professional radar console. Completely bypasses the stock UI for a lag-free experience.
+                    <br><br>
+                    <strong>Key Features:</strong>
+                    <ul class="feature-list">
+                        <li>Live aircraft photos via Planespotters.net</li>
+                        <li>Real-time distance and compass bearing</li>
+                        <li>Visual alerts for emergency squawk codes</li>
+                        <li>Split-screen telemetry panel</li>
+                    </ul>
+                </div>
+                <a href="fr24-dashboard.user.js" class="install-btn">⬇️ Install Script</a>
+            </div>
+
+            <div class="card coming-soon">
+                <div class="card-header">
+                    <h2 class="card-title">Project Delta</h2>
+                    <span class="version-badge">WIP</span>
+                </div>
+                <div class="card-description">
+                    Currently in development. This script will add advanced filtering and logging capabilities to local network dashboards. Check back later for updates.
+                </div>
+                <a href="#" class="install-btn" onclick="return false;">Coming Soon</a>
+            </div>
+
+            <div class="card coming-soon">
+                <div class="card-header">
+                    <h2 class="card-title">Unknown Tool</h2>
+                    <span class="version-badge">Planned</span>
+                </div>
+                <div class="card-description">
+                    Reserved slot for future script deployments.
+                </div>
+                <a href="#" class="install-btn" onclick="return false;">Coming Soon</a>
+            </div>
+
         </div>
+
+        <div class="setup-guide">
+            <h3>⚙️ How to use these scripts</h3>
+            <p>To install and run these scripts, you must first install a userscript manager extension for your web browser. We recommend <strong>Tampermonkey</strong> (available for Chrome, Firefox, Safari, and Edge). Once installed, simply click the green "Install Script" buttons above.</p>
+        </div>
+
     </div>
 
 </body>
