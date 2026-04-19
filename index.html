@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FR24 Custom Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 500px;
+            text-align: center;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        p {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+        .install-btn {
+            display: inline-block;
+            background-color: #2ecc71;
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            margin-top: 20px;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .install-btn:hover {
+            background-color: #27ae60;
+            transform: translateY(-2px);
+        }
+        .requirements {
+            margin-top: 30px;
+            font-size: 14px;
+            text-align: left;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #3498db;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>FR24 Feeder Dashboard</h1>
+        <p>A supercharged, standalone UI for your local Flightradar24 Raspberry Pi feeder. Features include live Planespotters.net image integration, distance sorting, and dynamic telemetry.</p>
+        
+        <a href="fr24-dashboard.user.js" class="install-btn">⬇️ Install Script</a>
+
+        <div class="requirements">
+            <strong>Requirements:</strong>
+            <ul style="margin-bottom:0; padding-left: 20px;">
+                <li>Browser extension like <b>Tampermonkey</b> installed.</li>
+                <li>Your feeder must be located at <code>192.168.50.252:8754</code> (Edit the script if your IP changes).</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
